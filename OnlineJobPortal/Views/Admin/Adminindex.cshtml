@@ -1,0 +1,55 @@
+﻿@model IEnumerable<OnlineJobPortal.Models.Job>
+
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "AdminIndex";
+
+}
+<link href="~/css/adminindex.css" rel="stylesheet" />
+<h2></h2>
+
+@if (TempData["InfoMessage"] != null)
+{
+    <div class="alert alert-info d-flex justify-content-between align-items-center" role="alert">
+        <span>
+            <strong>Information: </strong>@TempData["InfoMessage"]
+        </span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+else if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger d-flex justify-content-between align-items-center" role="alert">
+        <span>
+            <strong>Error: </strong>@TempData["ErrorMessage"]
+        </span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+else if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success d-flex justify-content-between align-items-center" role="alert">
+        <span>
+            <strong>Success: </strong>@TempData["SuccessMessage"]
+        </span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+<div class="container">
+    <img src="~/Images/Adminhome.png" alt="Alternate Text" class="home" />
+</div>
+
+<style>
+    .home
+    {
+        width: 100%; 
+        height: auto; 
+    }
+
+    .container 
+    {
+        width: 100%;
+        height: auto; 
+    }
+</style>

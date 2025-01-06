@@ -1,0 +1,69 @@
+﻿@model IEnumerable<OnlineJobPortal.Models.JobApplication>
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Job Applications";
+}
+
+<h2>Job Applications</h2>
+
+@if (TempData["InfoMessage"] != null)
+{
+    <div class="alert alert-info d-flex justify-content-between align-items-center" role="alert">
+        <span>
+            <strong>Information: </strong>@TempData["InfoMessage"]
+        </span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+else if (TempData["errorMessage"] != null)
+{
+    <div class="alert alert-danger d-flex justify-content-between align-items-center" role="alert">
+        <span>
+            <strong>Error: </strong>@TempData["errorMessage"]
+        </span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+else if (TempData["successMessage"] != null)
+{
+    <div class="alert alert-success d-flex justify-content-between align-items-center" role="alert">
+        <span>
+            <strong>Success: </strong>@TempData["successMessage"]
+        </span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<table class="table table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Jobname)</th>
+            <th>Full Name</th>
+            <th>Applied Date</th>
+            <th>View</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Jobname)</td>
+                <td>@item.Firstname @item.Lastname</td>
+                <td>@Html.DisplayFor(modelItem => item.Applieddate)</td>
+                <td>
+                    @Html.ActionLink("View","AdminViewUserProfile",new { userId = item.UserId, jobApplicationId = item.JobApplicationId },new { @class = "btn btn-primary btn-sm" })
+                </td>
+
+                <td>
+                    <form asp-action="DeleteJobApplication" method="post" class="d-inline">
+                        <input type="hidden" name="id" value="@item.JobApplicationId" />
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

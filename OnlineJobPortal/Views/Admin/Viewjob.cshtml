@@ -1,0 +1,86 @@
+﻿@model IEnumerable<OnlineJobPortal.Models.Job>
+
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "AdminIndex";
+
+}
+
+<h2>Jobs</h2>
+
+@if (TempData["InfoMessage"] != null)
+{
+    <div class="alert alert-info d-flex justify-content-between align-items-center" role="alert">
+        <span>
+            <strong>Information: </strong>@TempData["InfoMessage"]
+        </span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+else if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger d-flex justify-content-between align-items-center" role="alert">
+        <span>
+            <strong>Error: </strong>@TempData["ErrorMessage"]
+        </span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+else if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success d-flex justify-content-between align-items-center" role="alert">
+        <span>
+            <strong>Success: </strong>@TempData["SuccessMessage"]
+        </span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+<p>
+    @Html.ActionLink("Add Job", "Insertjob", null, new { @class = "btn btn-info btn-sm" })
+</p>
+
+<table class="table table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Jobname)</th>
+            <th>@Html.DisplayNameFor(model => model.Eligibility)</th>
+            <th>@Html.DisplayNameFor(model => model.Experience)</th>
+            <th>@Html.DisplayNameFor(model => model.Location)</th>
+            <th>@Html.DisplayNameFor(model => model.Salary)</th>
+            <th>@Html.DisplayNameFor(model => model.Positions)</th>
+            <th>@Html.DisplayNameFor(model => model.Image)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Jobname)</td>
+                <td>@Html.DisplayFor(modelItem => item.Eligibility)</td>
+                <td>@Html.DisplayFor(modelItem => item.Experience)</td>
+                <td>@Html.DisplayFor(modelItem => item.Location)</td>
+                <td>@Html.DisplayFor(modelItem => item.Salary)</td>
+                <td>@Html.DisplayFor(modelItem => item.Positions)</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.Image))
+                    {
+                        <img src="data:image/png;base64,@item.Image" alt="Photo" class="img-thumbnail" style="width:50px; height:auto;" />
+                    }
+                    else
+                    {
+                        <span>No Photo</span>
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Updatejob", new { id = item.JobID }, new { @class = "btn btn-primary btn-sm" })
+                    <form asp-action="DeleteJob" method="post" class="d-inline">
+                        <input type="hidden" name="id" value="@item.JobID" />
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

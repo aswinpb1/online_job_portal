@@ -1,0 +1,30 @@
+.login-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-label {
+    flex: 1;
+    font-weight: bold;
+}
+
+.text-field-right {
+    flex: 2;
+    max-width: 58%;
+}
+
+.text-danger {
+    font-size: 0.875rem;
+}
+
+.btn {
+    display: block;
+}

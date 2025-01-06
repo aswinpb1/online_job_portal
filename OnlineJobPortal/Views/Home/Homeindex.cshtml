@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Landing Page</title>
+    <link rel="stylesheet" href="~/css/homeindex.css" asp-append-version="true" />
+</head>
+<body>
+    @{
+        ViewData["Title"] = "Home Page";
+
+        var errorMessage = TempData["errormessage"]?.ToString();
+        var successMessage = TempData["successMessage"]?.ToString();
+    }
+
+    @if (!string.IsNullOrWhiteSpace(successMessage))
+    {
+        <div class="alert alert-success">
+            <b>Success: </b>@successMessage
+            <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    <div class="photos">
+        <img src="~/images/Jobportalhome.png" alt="Alternate Text" />
+    </div>
+
+    <div class="heading">
+        <div class="heading-overlay"></div>
+        <div class="content">
+            <h1>Best Job for You </h1>
+            <p>Looking for your dream job? Our online job portal connects you with top employers and thousands of opportunities across industries. Whether you’re searching for a remote role, freelance gig, or full-time position, we make it easy to discover the perfect match for your skills and goals. Start your journey to a better career today!</p>
+            <a href="Home/Aboutus" class="btn btn-primary">About Us</a>
+            <a href="Home/Contactus" class="btn btn-secondary">Contact</a>
+        </div>
+    </div>
+
+
+    <div class="services">
+        <h2>Our Services</h2>
+        <p>We understand the importance of approaching each work integrally and believe in the power of simple and easy communication.</p>
+        <div class="service-cards">
+            <div class="service-card">
+                <img src="https://via.placeholder.com/50" alt="Job Search">
+                <h3>Find the Job</h3>
+                <p>Find the best job opportunities tailored to your skills and preferences.</p>
+            </div>
+            <div class="service-card">
+                <img src="https://via.placeholder.com/50" alt="Recruiter Connect">
+                <h3>Recruiter Connect</h3>
+                <p>Connect directly with recruiters and hiring managers in your field.</p>
+            </div>
+            <div class="service-card">
+                <img src="https://via.placeholder.com/50" alt="Career Guidance">
+                <h3>Career Guidance</h3>
+                <p>Get expert advice to navigate your career and achieve your goals.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

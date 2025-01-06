@@ -1,0 +1,85 @@
+﻿@model OnlineJobPortal.Models.Contactus
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Contact Us";
+}
+
+<link href="~/css/contactus.css" rel="stylesheet" />
+
+<h2>Contact Us</h2>
+
+@if (TempData["InfoMessage"] != null)
+{
+    <div class="alert alert-info d-flex justify-content-between align-items-center" role="alert">
+        <span>
+            <strong>Information: </strong>@TempData["InfoMessage"]
+        </span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+else if (TempData["errorMessage"] != null)
+{
+    <div class="alert alert-danger d-flex justify-content-between align-items-center" role="alert">
+        <span>
+            <strong>Error: </strong>@TempData["errorMessage"]
+        </span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+else if (TempData["successMessage"] != null)
+{
+    <div class="alert alert-success d-flex justify-content-between align-items-center" role="alert">
+        <span>
+            <strong>Success: </strong>@TempData["successMessage"]
+        </span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="contact-container">
+    <div class="contact-info">
+        <h1>Get in touch today</h1>
+        <p>We love questions and feedback – and we're always happy to help! Here are some ways to contact us.</p>
+
+        <div class="contact-detail">
+            <div class="contact-image">
+                <img src="~/images/Online Job Portal logo-contact.png" alt="Contact Us" />
+            </div>
+            <div>
+                <strong>Email:</strong>
+                <p>Onlinejobportal@gmail.com</p>
+            </div>
+            <div>
+                <strong>Phone:</strong>
+                <p>9192939495</p>
+            </div>
+        </div>
+
+        <div class="social-links">
+            <p>Reach out to us on:</p>
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">Instagram</a>
+        </div>
+    </div>
+
+    <div class="contact-form">
+        <form action="@Url.Action("Contactus", "Home")" method="POST">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="Fullname" placeholder="Your name" required />
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="Email" placeholder="Your email address" required />
+
+            <label for="company">Company (optional)</label>
+            <input type="text" id="company" name="Company" placeholder="Company name" />
+
+            <label for="message">Leave us a message</label>
+            <textarea id="message" name="Message" placeholder="Write your message here..." rows="5" required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</div>

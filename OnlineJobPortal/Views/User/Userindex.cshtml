@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+
+
+    var errorMessage = TempData["errormessage"]?.ToString();
+
+    var successMessage = TempData["successMessage"]?.ToString();
+}
+@if (!string.IsNullOrWhiteSpace(@successMessage))
+{
+    <div class="alert alert-success">
+
+        <b>Success: </b>@successMessage
+
+        <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+
+    </div>
+}
+else if (!string.IsNullOrWhiteSpace(errorMessage))
+{
+    <div class="alert alert-danger">
+        <b>Error:</b> @errorMessage
+        <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+<div class="container">
+    <img src="~/Images/Adminhome.png" alt="Alternate Text" class="home" />
+</div>
+
+<style>
+    .home {
+        width: 100%;
+        height: auto;
+    }
+
+    .container {
+        width: 100%;
+        height: auto;
+    }
+</style>
